@@ -24,11 +24,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'game':
-        return 'text-purple-400';
+        return 'text-gray-300';
       case 'web':
-        return 'text-blue-400';
+        return 'text-gray-300';
       case 'mobile':
-        return 'text-green-400';
+        return 'text-gray-300';
       default:
         return 'text-gray-400';
     }
@@ -41,7 +41,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
     >
-      <Card variant="glass" className="h-full glass-interactive grain-light">
+      <Card className="h-full glass glass-hover card-hover">
         <CardHeader>
           <div className="flex items-center justify-between mb-2">
             <div className={`flex items-center space-x-2 ${getCategoryColor(project.category)}`}>
@@ -75,8 +75,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
           <div className="flex items-center space-x-2">
             <span className={`text-sm font-medium ${
-              project.status === 'completed' ? 'text-green-400' : 
-              project.status === 'in-progress' ? 'text-yellow-400' : 
+              project.status === 'completed' ? 'text-gray-300' : 
+              project.status === 'in-progress' ? 'text-purple-light' : 
               'text-gray-400'
             }`}>
               {project.status === 'completed' ? '✅ Concluído' : 
@@ -96,8 +96,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="glass-subtle rounded-xl p-3 text-center group relative overflow-hidden">
-                <ExternalLink className="w-5 h-5 mx-auto mb-2 text-blue-400 group-hover:text-blue-300 transition-colors" />
+              <div className="glass rounded-xl p-3 text-center glass-hover">
+                <ExternalLink className="w-5 h-5 mx-auto mb-2 text-purple group-hover:text-purple-light transition-colors" />
                 <span className="text-sm font-medium text-white group-hover:text-gray-100 transition-colors">
                   Demo
                 </span>
@@ -113,7 +113,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="glass-subtle rounded-xl p-3 text-center group relative overflow-hidden">
+              <div className="glass rounded-xl p-3 text-center glass-hover">
                 <Github className="w-5 h-5 mx-auto mb-2 text-gray-400 group-hover:text-white transition-colors" />
                 <span className="text-sm font-medium text-white group-hover:text-gray-100 transition-colors">
                   GitHub
@@ -130,7 +130,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="glass-subtle rounded-xl p-3 text-center group relative overflow-hidden">
+              <div className="glass rounded-xl p-3 text-center glass-hover">
                 <Gamepad2 className="w-5 h-5 mx-auto mb-2 text-purple-400 group-hover:text-purple-300 transition-colors" />
                 <span className="text-sm font-medium text-white group-hover:text-gray-100 transition-colors">
                   itch.io

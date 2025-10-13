@@ -35,7 +35,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-contact section-auto px-6">
       <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -47,7 +47,7 @@ export default function Contact() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Vamos Conversar
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
             Estou sempre aberto a novas oportunidades, colaborações e conversas interessantes. 
             Não hesite em entrar em contato!
           </p>
@@ -77,14 +77,14 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 glass-subtle rounded-xl flex items-center justify-center text-blue-400 group-hover:text-white transition-colors">
+                    <div className="flex-shrink-0 w-12 h-12 glass-subtle rounded-xl flex items-center justify-center text-purple group-hover:text-white transition-colors">
                       {method.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-semibold text-white mb-1">
                         {method.label}
                       </h3>
-                      <p className="text-blue-400 font-medium mb-2">
+                      <p className="text-purple font-medium mb-2">
                         {method.value}
                       </p>
                       <p className="text-sm text-gray-400">
@@ -115,7 +115,7 @@ export default function Contact() {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     placeholder="Seu nome completo"
                   />
                 </div>
@@ -124,7 +124,7 @@ export default function Contact() {
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Assunto
                   </label>
-                  <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                  <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
                     <option value="" className="bg-gray-900">Selecione um assunto</option>
                     <option value="work" className="bg-gray-900">Oportunidade de Trabalho</option>
                     <option value="collaboration" className="bg-gray-900">Colaboração</option>
@@ -139,7 +139,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
                     placeholder="Conte-me sobre seu projeto ou ideia..."
                   />
                 </div>

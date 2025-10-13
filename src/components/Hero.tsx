@@ -27,14 +27,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="gradient-bg section-full relative overflow-hidden">
       {/* Background gradient with parallax effect */}
-      <div className="absolute inset-0 gradient-bg" />
       
       {/* Animated background elements with improved performance */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 glass rounded-full opacity-20"
+          className="absolute top-0 right-0 w-80 h-80 glass rounded-full opacity-20"
           animate={{
             rotate: [0, 360],
             scale: [1, 1.1, 1],
@@ -80,11 +79,11 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div
-          className="glass-strong grain-medium rounded-3xl p-8 md:p-12 max-w-4xl mx-auto relative"
+          className="glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto"
           variants={itemVariants}
         >
           <motion.div
-            className="w-32 h-32 mx-auto mb-8 rounded-full glass-interactive border-4 border-white/10 overflow-hidden relative"
+            className="w-32 h-32 mx-auto mb-8 rounded-full glass border-4 border-purple/30 overflow-hidden"
             variants={itemVariants}
           >
             <img 
@@ -121,17 +120,13 @@ export default function Hero() {
             className="flex flex-wrap justify-center gap-4 mb-8"
             variants={itemVariants}
           >
-            <Button variant="glass" size="lg" className="px-8">
-              <Download className="w-5 h-5 mr-2" />
-              Download CV
-            </Button>
-            <Button variant="outline" size="lg" className="px-8" onClick={() => {
-              const contactSection = document.querySelector('#contact');
-              contactSection?.scrollIntoView({ behavior: 'smooth' });
-            }}>
-              <Mail className="w-5 h-5 mr-2" />
-              Contato
-            </Button>
+      <Button className="btn-glass px-8 py-3 rounded-xl font-medium" onClick={() => {
+        const contactSection = document.querySelector('#contact');
+        contactSection?.scrollIntoView({ behavior: 'smooth' });
+      }}>
+        <Mail className="w-5 h-5 mr-2" />
+        Contato
+      </Button>
           </motion.div>
 
           <motion.div
@@ -142,7 +137,7 @@ export default function Hero() {
               href="https://github.com/patitow"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-interactive rounded-full p-4 grain-light"
+              className="glass rounded-full p-4 glass-hover"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -152,17 +147,17 @@ export default function Hero() {
               href="https://www.linkedin.com/in/patitow/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-interactive rounded-full p-4 grain-light"
+              className="glass rounded-full p-4 glass-hover"
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Linkedin className="w-6 h-6 text-blue-400" />
+              <Linkedin className="w-6 h-6 text-purple" />
             </motion.a>
             <motion.a
               href="https://patitow.itch.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-interactive rounded-full p-4 grain-light"
+              className="glass rounded-full p-4 glass-hover"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >

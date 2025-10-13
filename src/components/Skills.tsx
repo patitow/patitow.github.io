@@ -9,11 +9,11 @@ export default function Skills() {
   const getLevelColor = (level: string) => {
     switch (level) {
       case 'expert':
-        return 'text-green-400';
+        return 'text-purple';
       case 'advanced':
-        return 'text-blue-400';
+        return 'text-purple';
       case 'intermediate':
-        return 'text-yellow-400';
+        return 'text-purple-light';
       case 'beginner':
         return 'text-gray-400';
       default:
@@ -52,10 +52,10 @@ export default function Skills() {
   };
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-skills section-auto px-6">
       <div className="container mx-auto">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 pt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -64,7 +64,7 @@ export default function Skills() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Habilidades & Tecnologias
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-body-contrast max-w-3xl mx-auto">
             Tecnologias e ferramentas que domino, organizadas por categoria. 
             Estou sempre aprendendo e evoluindo para acompanhar as últimas tendências do mercado.
           </p>
@@ -92,7 +92,7 @@ export default function Skills() {
 
         {/* Skills Grid */}
         <motion.div
-          className="glass-strong grain-medium rounded-2xl p-8 max-w-4xl mx-auto"
+          className="glass rounded-2xl p-8 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -115,8 +115,8 @@ export default function Skills() {
                   </span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
-                  <motion.div
-                    className={`h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 ${getLevelWidth(skill.level)}`}
+              <motion.div
+                className="h-2 rounded-full gradient-skill"
                     initial={{ width: 0 }}
                     whileInView={{ 
                       width: skill.level === 'expert' ? '100%' : 

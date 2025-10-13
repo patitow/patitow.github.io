@@ -31,7 +31,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-projects section-auto px-6">
       <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"

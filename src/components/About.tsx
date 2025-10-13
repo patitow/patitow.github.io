@@ -10,7 +10,7 @@ export default function About() {
   ];
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-about section-full px-6">
       <div className="container mx-auto">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
@@ -46,16 +46,16 @@ export default function About() {
 
               <p>
                 Com mais de 4 anos de experiência em desenvolvimento, trabalho principalmente com 
-                <span className="text-blue-400 font-medium"> React</span>, 
-                <span className="text-blue-400 font-medium"> Node.js</span>, 
+                <span className="text-purple font-medium"> React</span>, 
+                <span className="text-purple font-medium"> Node.js</span>, 
                 <span className="text-purple-400 font-medium"> Unity</span> e 
-                <span className="text-green-400 font-medium"> Godot</span>. 
-                Meu foco está em <span className="text-yellow-400 font-medium">Ciência de Dados e IA</span>, 
+                <span className="text-purple-light font-medium"> Godot</span>. 
+                Meu foco está em <span className="text-purple font-medium">Ciência de Dados e IA</span>, 
                 criando soluções inovadoras que combinam funcionalidade e estética.
               </p>
 
               <p>
-                Sou <span className="text-blue-400 font-medium">Engenheiro da Computação formado na UPE</span> 
+                Sou <span className="text-purple font-medium">Engenheiro da Computação formado na UPE</span> 
                 e atualmente cursando <span className="text-purple-400 font-medium">mestrado em Engenharia da Computação</span>. 
                 Além do desenvolvimento web, sou um entusiasta do desenvolvimento de jogos, 
                 tendo criado vários títulos independentes.
@@ -101,7 +101,7 @@ export default function About() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="flex justify-center mb-3 text-blue-400">
+                  <div className="flex justify-center mb-3 text-purple">
                     {stat.icon}
                   </div>
                   <div className="text-3xl font-bold gradient-text mb-2">
