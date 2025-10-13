@@ -20,9 +20,6 @@ export default function Footer() {
               className="flex items-center justify-center space-x-3 mb-4"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-12 h-12 glass rounded-xl flex items-center justify-center">
-                <span className="text-2xl font-bold gradient-text">MO</span>
-              </div>
               <span className="text-2xl font-bold text-white">Matheus Souza de Oliveira</span>
             </motion.div>
             <p className="text-gray-400 max-w-2xl mx-auto">
