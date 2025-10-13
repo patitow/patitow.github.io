@@ -92,7 +92,7 @@ export default function Skills() {
 
         {/* Skills Grid */}
         <motion.div
-          className="glass rounded-2xl p-8 max-w-4xl mx-auto"
+          className="glass-strong grain-medium rounded-2xl p-8 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}

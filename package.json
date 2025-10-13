@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run copy-files",
-    "copy-files": "cpx \"dist/index.html\" \".\" && cpx \"dist/assets/**\" \"./assets\"",
+    "copy-files": "cpx \"dist/index.html\" \".\" && cpx \"dist/assets/**\" \"./assets\" && cpx \"public/profilePic.png\" \"./assets\" && cpx \"public/favicon.*\" \".\"",
     "preview": "vite preview",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0"
   },

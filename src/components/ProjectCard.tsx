@@ -41,7 +41,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
     >
-      <Card variant="glass" className="h-full glass-hover">
+      <Card variant="glass" className="h-full glass-interactive grain-light">
         <CardHeader>
           <div className="flex items-center justify-between mb-2">
             <div className={`flex items-center space-x-2 ${getCategoryColor(project.category)}`}>
@@ -86,30 +86,57 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </CardContent>
 
-        <CardFooter className="flex flex-wrap gap-2">
+        <CardFooter className="flex flex-wrap gap-3 pt-4">
           {project.links.demo && (
-            <Button variant="glass" size="sm" asChild>
-              <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Demo
-              </a>
-            </Button>
+            <motion.a
+              href={project.links.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 min-w-0"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="glass-subtle rounded-xl p-3 text-center group relative overflow-hidden">
+                <ExternalLink className="w-5 h-5 mx-auto mb-2 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                <span className="text-sm font-medium text-white group-hover:text-gray-100 transition-colors">
+                  Demo
+                </span>
+              </div>
+            </motion.a>
           )}
           {project.links.github && (
-            <Button variant="outline" size="sm" asChild>
-              <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4 mr-2" />
-                GitHub
-              </a>
-            </Button>
+            <motion.a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 min-w-0"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="glass-subtle rounded-xl p-3 text-center group relative overflow-hidden">
+                <Github className="w-5 h-5 mx-auto mb-2 text-gray-400 group-hover:text-white transition-colors" />
+                <span className="text-sm font-medium text-white group-hover:text-gray-100 transition-colors">
+                  GitHub
+                </span>
+              </div>
+            </motion.a>
           )}
           {project.links.itch && (
-            <Button variant="glass" size="sm" asChild>
-              <a href={project.links.itch} target="_blank" rel="noopener noreferrer">
-                <Gamepad2 className="w-4 h-4 mr-2" />
-                itch.io
-              </a>
-            </Button>
+            <motion.a
+              href={project.links.itch}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 min-w-0"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="glass-subtle rounded-xl p-3 text-center group relative overflow-hidden">
+                <Gamepad2 className="w-5 h-5 mx-auto mb-2 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                <span className="text-sm font-medium text-white group-hover:text-gray-100 transition-colors">
+                  itch.io
+                </span>
+              </div>
+            </motion.a>
           )}
         </CardFooter>
       </Card>

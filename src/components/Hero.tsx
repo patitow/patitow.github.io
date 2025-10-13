@@ -80,15 +80,15 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div
-          className="glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto"
+          className="glass-strong grain-medium rounded-3xl p-8 md:p-12 max-w-4xl mx-auto relative"
           variants={itemVariants}
         >
           <motion.div
-            className="w-32 h-32 mx-auto mb-8 rounded-full glass border-4 border-white/20 overflow-hidden"
+            className="w-32 h-32 mx-auto mb-8 rounded-full glass-interactive border-4 border-white/10 overflow-hidden relative"
             variants={itemVariants}
           >
             <img 
-              src="/profilePic.png" 
+              src="/assets/profilePic.png" 
               alt="Matheus Souza de Oliveira" 
               className="w-full h-full object-cover"
             />
@@ -142,31 +142,31 @@ export default function Hero() {
               href="https://github.com/patitow"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-full p-3 glass-hover"
-              whileHover={{ scale: 1.1 }}
+              className="glass-interactive rounded-full p-4 grain-light"
+              whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Github className="w-6 h-6" />
+              <Github className="w-6 h-6 text-gray-300" />
             </motion.a>
             <motion.a
               href="https://www.linkedin.com/in/patitow/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-full p-3 glass-hover"
-              whileHover={{ scale: 1.1 }}
+              className="glass-interactive rounded-full p-4 grain-light"
+              whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Linkedin className="w-6 h-6" />
+              <Linkedin className="w-6 h-6 text-blue-400" />
             </motion.a>
             <motion.a
               href="https://patitow.itch.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-full p-3 glass-hover"
-              whileHover={{ scale: 1.1 }}
+              className="glass-interactive rounded-full p-4 grain-light"
+              whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-lg font-bold">🎮</span>
+              <span className="text-xl">🎮</span>
             </motion.a>
           </motion.div>
         </motion.div>

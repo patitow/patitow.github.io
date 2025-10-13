@@ -69,7 +69,7 @@ export default function Contact() {
                   href={method.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block glass rounded-2xl p-6 glass-hover group"
+                  className="block glass-interactive rounded-2xl p-6 grain-light group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
@@ -77,7 +77,7 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-400 group-hover:text-white transition-colors">
+                    <div className="flex-shrink-0 w-12 h-12 glass-subtle rounded-xl flex items-center justify-center text-blue-400 group-hover:text-white transition-colors">
                       {method.icon}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -98,7 +98,7 @@ export default function Contact() {
 
             {/* Contact Form Placeholder */}
             <motion.div
-              className="glass rounded-2xl p-8"
+              className="glass-strong grain-medium rounded-2xl p-8"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}

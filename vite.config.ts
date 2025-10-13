@@ -19,7 +19,13 @@ export default defineConfig({
       output: {
         entryFileNames: 'assets/index.js',
         chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]',
+        assetFileNames: (assetInfo) => {
+          // Copia favicons e profilePic para a raiz
+          if (assetInfo.name?.includes('favicon') || assetInfo.name?.includes('profilePic')) {
+            return '[name].[ext]';
+          }
+          return 'assets/[name].[ext]';
+        },
         manualChunks: {
           vendor: ['react', 'react-dom'],
           ui: ['framer-motion', 'lucide-react'],
