@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run copy-files",
-    "copy-files": "copy dist\\index.html . && xcopy dist\\assets .\\assets\\ /E /I /Y",
+    "copy-files": "cpx \"dist/index.html\" \".\" && cpx \"dist/assets/**\" \"./assets\"",
     "preview": "vite preview",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
@@ -23,6 +23,7 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.14",
+    "cpx": "^1.5.0",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
