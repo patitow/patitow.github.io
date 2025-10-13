@@ -69,7 +69,7 @@ export default function Contact() {
                   href={method.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block glass-interactive rounded-2xl p-6 grain-light group"
+                  className="block glass rounded-2xl p-6 glass-hover group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
@@ -77,17 +77,17 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 glass-subtle rounded-xl flex items-center justify-center text-purple group-hover:text-white transition-colors">
+                    <div className="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-purple group-hover:text-white transition-colors">
                       {method.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-white mb-1">
+                      <h3 className="text-lg font-semibold text-high-contrast mb-1">
                         {method.label}
                       </h3>
                       <p className="text-purple font-medium mb-2">
                         {method.value}
                       </p>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-medium-contrast">
                         {method.description}
                       </p>
                     </div>
@@ -98,7 +98,7 @@ export default function Contact() {
 
             {/* Contact Form Placeholder */}
             <motion.div
-              className="glass-strong grain-medium rounded-2xl p-8"
+              className="glass rounded-2xl p-8"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -110,7 +110,7 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-medium-contrast mb-2">
                     Nome
                   </label>
                   <input
@@ -121,7 +121,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-medium-contrast mb-2">
                     Assunto
                   </label>
                   <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
@@ -134,7 +134,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-medium-contrast mb-2">
                     Mensagem
                   </label>
                   <textarea
@@ -175,12 +175,12 @@ export default function Contact() {
                 </Button>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-white/10">
-                <div className="flex items-center space-x-2 text-gray-400 text-sm">
+              <div className="mt-6 pt-6">
+                <div className="flex items-center space-x-2 text-medium-contrast text-sm">
                   <MapPin className="w-4 h-4" />
                   <span>Recife, Pernambuco, Brasil</span>
                 </div>
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-medium-contrast text-sm mt-2">
                   Geralmente respondo em até 24 horas. 
                   Para propostas urgentes, prefira o LinkedIn ou WhatsApp.
                 </p>

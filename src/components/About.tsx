@@ -32,7 +32,7 @@ export default function About() {
             </motion.h2>
 
             <motion.div
-              className="space-y-4 text-gray-300 leading-relaxed"
+              className="space-y-4 text-body-contrast leading-relaxed"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -64,7 +64,7 @@ export default function About() {
 
             {/* Location & Education */}
             <motion.div
-              className="flex items-center space-x-6 text-gray-400"
+              className="flex items-center space-x-6 text-medium-contrast"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
@@ -107,7 +107,7 @@ export default function About() {
                   <div className="text-3xl font-bold gradient-text mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm text-medium-contrast">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -136,7 +136,7 @@ export default function About() {
                 ].map((interest, index) => (
                   <motion.span
                     key={interest}
-                    className="px-3 py-2 glass rounded-full text-sm text-gray-300"
+                    className="px-3 py-2 glass rounded-full text-sm text-glass-contrast"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.1 + 0.9 }}

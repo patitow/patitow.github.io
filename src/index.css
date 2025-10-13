@@ -1,3 +1,6 @@
+/* Importar padrões visuais automáticos */
+@import './styles/visualStandards.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,19 +37,27 @@
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
   html {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  #root {
+    margin: 0;
+    padding: 0;
   }
 }
 
 /* Hero Section - Primary Multi-Layer Gradient */
 .gradient-bg {
   background: 
-    /* Base gradient */
+    /* Base gradient - termina em #334155 para transição com About */
     linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%),
-    /* Purple overlay gradient */
-    linear-gradient(45deg, rgba(168, 85, 247, 0.1) 0%, rgba(147, 51, 234, 0.08) 100%);
+    /* Purple overlay gradient - increased purple tones */
+    linear-gradient(45deg, rgba(168, 85, 247, 0.15) 0%, rgba(147, 51, 234, 0.12) 100%);
   min-height: 100vh;
   position: relative;
 }
@@ -59,12 +70,11 @@
   right: 0;
   bottom: 0;
   background: 
-    /* Multiple radial gradients for depth */
-    radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.15) 0%, transparent 60%),
+    /* Subtle radial gradients for depth - reduced opacity */
+    radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.06) 0%, transparent 60%),
     /* Transition gradient for seamless blend */
-    linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.05) 70%, rgba(124, 58, 237, 0.1) 100%);
+    linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.03) 70%, rgba(124, 58, 237, 0.08) 100%);
   pointer-events: none;
   animation: heroGradientShift 25s ease-in-out infinite;
 }
@@ -72,12 +82,12 @@
 /* About Section - Multi-Layer Transition Gradient */
 .gradient-about {
   background: 
-    /* Base gradient with seamless transition */
-    linear-gradient(180deg, #1e293b 0%, #334155 30%, #475569 70%, #64748b 100%),
-    /* Purple overlay with variation */
-    linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(139, 92, 246, 0.06) 50%, rgba(168, 85, 247, 0.08) 100%),
+    /* Base gradient - começa em #334155 (do Hero) e termina em #334155 (para Projects) */
+    linear-gradient(180deg, #334155 0%, #1e293b 20%, #334155 40%, #475569 60%, #64748b 80%, #334155 100%),
+    /* Purple overlay with variation - increased purple tones */
+    linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(139, 92, 246, 0.10) 50%, rgba(168, 85, 247, 0.12) 100%),
     /* Smooth transition from hero section */
-    linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.1) 20%, transparent 40%);
+    linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.2) 15%, transparent 35%);
   position: relative;
 }
 
@@ -89,12 +99,11 @@
   right: 0;
   bottom: 0;
   background: 
-    /* Multiple radial gradients */
-    radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.12) 0%, transparent 55%),
-    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 55%),
-    radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.08) 0%, transparent 65%),
+    /* Subtle radial gradients - reduced opacity */
+    radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.04) 0%, transparent 65%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.03) 0%, transparent 65%),
     /* Transition gradients for smooth blending */
-    linear-gradient(180deg, rgba(147, 51, 234, 0.08) 0%, transparent 30%, rgba(216, 180, 254, 0.06) 100%);
+    linear-gradient(180deg, rgba(147, 51, 234, 0.04) 0%, transparent 30%, rgba(216, 180, 254, 0.03) 100%);
   pointer-events: none;
   animation: aboutGradientShift 30s ease-in-out infinite;
 }
@@ -102,12 +111,12 @@
 /* Projects Section - Tertiary Gradient */
 .gradient-projects {
   background: 
-    /* Seamless transition from about */
-    linear-gradient(180deg, #64748b 0%, #475569 25%, #334155 50%, #475569 75%, #64748b 100%),
-    /* Purple overlay for seamless blend */
-    linear-gradient(135deg, rgba(216, 180, 254, 0.08) 0%, rgba(196, 181, 253, 0.06) 50%, rgba(147, 51, 234, 0.08) 100%),
+    /* Seamless transition - começa em #334155 (do About) e termina em #1e293b (para Skills) */
+    linear-gradient(180deg, #334155 0%, #64748b 15%, #475569 30%, #334155 45%, #475569 60%, #64748b 75%, #334155 90%, #1e293b 100%),
+    /* Purple overlay for seamless blend - increased purple tones */
+    linear-gradient(135deg, rgba(216, 180, 254, 0.12) 0%, rgba(196, 181, 253, 0.10) 50%, rgba(147, 51, 234, 0.12) 100%),
     /* Smooth transition from about section */
-    linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(30, 41, 59, 0.2) 25%, transparent 50%);
+    linear-gradient(180deg, rgba(51, 65, 85, 0.4) 0%, rgba(51, 65, 85, 0.2) 15%, transparent 35%);
   position: relative;
 }
 
@@ -119,10 +128,10 @@
   right: 0;
   bottom: 0;
   background: 
-    /* Accent gradients with seamless blend */
-    radial-gradient(circle at 15% 85%, rgba(216, 180, 254, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 85% 15%, rgba(196, 181, 253, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 60% 60%, rgba(147, 51, 234, 0.08) 0%, transparent 60%);
+    /* Subtle accent gradients - reduced opacity */
+    radial-gradient(circle at 15% 85%, rgba(216, 180, 254, 0.04) 0%, transparent 60%),
+    radial-gradient(circle at 85% 15%, rgba(196, 181, 253, 0.03) 0%, transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(147, 51, 234, 0.03) 0%, transparent 70%);
   pointer-events: none;
   animation: projectsGradientShift 35s ease-in-out infinite;
 }
@@ -130,12 +139,12 @@
 /* Skills Section - Quaternary Gradient */
 .gradient-skills {
   background: 
-    /* Seamless transition from projects */
-    linear-gradient(180deg, #64748b 0%, #475569 20%, #334155 40%, #475569 60%, #64748b 80%, #334155 100%),
-    /* Purple overlay for seamless blend */
-    linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(124, 58, 237, 0.06) 50%, rgba(192, 132, 252, 0.08) 100%),
+    /* Seamless transition - começa em #1e293b (do Projects) e termina em #1e293b (para Contact) */
+    linear-gradient(180deg, #1e293b 0%, #334155 15%, #475569 30%, #334155 45%, #64748b 60%, #475569 75%, #334155 90%, #1e293b 100%),
+    /* Purple overlay for seamless blend - increased purple tones */
+    linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(124, 58, 237, 0.10) 50%, rgba(192, 132, 252, 0.12) 100%),
     /* Smooth transition from projects section */
-    linear-gradient(180deg, rgba(71, 85, 105, 0.3) 0%, rgba(71, 85, 105, 0.15) 20%, transparent 40%);
+    linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(30, 41, 59, 0.2) 15%, transparent 35%);
   position: relative;
 }
 
@@ -147,10 +156,10 @@
   right: 0;
   bottom: 0;
   background: 
-    /* Skill-focused gradients with seamless blend */
-    radial-gradient(circle at 30% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 55%),
-    radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.12) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.1) 0%, transparent 65%);
+    /* Subtle skill-focused gradients - reduced opacity */
+    radial-gradient(circle at 30% 70%, rgba(168, 85, 247, 0.05) 0%, transparent 65%),
+    radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.04) 0%, transparent 65%),
+    radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.03) 0%, transparent 75%);
   pointer-events: none;
   animation: skillsGradientShift 28s ease-in-out infinite;
 }
@@ -158,12 +167,12 @@
 /* Contact Section - Final Gradient */
 .gradient-contact {
   background: 
-    /* Seamless transition from skills */
-    linear-gradient(180deg, #334155 0%, #64748b 15%, #334155 30%, #475569 50%, #334155 70%, #1e293b 85%, #0f172a 100%),
-    /* Purple overlay for seamless blend */
-    linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(216, 180, 254, 0.06) 50%, rgba(147, 51, 234, 0.08) 100%),
+    /* Seamless transition - começa em #1e293b (do Skills) e termina em #0f172a (para Footer) */
+    linear-gradient(180deg, #1e293b 0%, #334155 20%, #475569 40%, #334155 60%, #64748b 80%, #0f172a 100%),
+    /* Purple overlay for seamless blend - increased purple tones */
+    linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(216, 180, 254, 0.10) 50%, rgba(147, 51, 234, 0.12) 100%),
     /* Smooth transition from skills section */
-    linear-gradient(180deg, rgba(51, 65, 85, 0.4) 0%, rgba(51, 65, 85, 0.2) 15%, transparent 30%);
+    linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(30, 41, 59, 0.2) 15%, transparent 35%);
   position: relative;
 }
 
@@ -175,10 +184,10 @@
   right: 0;
   bottom: 0;
   background: 
-    /* Contact-focused gradients with seamless blend */
-    radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-    radial-gradient(circle at 75% 75%, rgba(216, 180, 254, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+    /* Subtle contact-focused gradients - reduced opacity */
+    radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.05) 0%, transparent 70%),
+    radial-gradient(circle at 75% 75%, rgba(216, 180, 254, 0.04) 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.03) 0%, transparent 80%);
   pointer-events: none;
   animation: contactGradientShift 32s ease-in-out infinite;
 }
@@ -217,16 +226,16 @@
 
 /* Apple Liquid Glass Effects with Better Contrast */
 .glass {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border: 0.5px solid rgba(255, 255, 255, 0.18);
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -267,16 +276,16 @@
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(32px) saturate(160%);
   -webkit-backdrop-filter: blur(32px) saturate(160%);
-  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -339,21 +348,28 @@
 /* High Contrast Text */
 .text-high-contrast {
   color: #ffffff;
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .text-medium-contrast {
-  color: #f8fafc;
-  font-weight: 400;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .text-body-contrast {
-  color: #f1f5f9;
+  color: #f8fafc;
   font-weight: 400;
   line-height: 1.6;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.text-glass-contrast {
+  color: #ffffff;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 /* Apple Liquid Glass Navigation */

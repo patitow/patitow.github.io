@@ -49,7 +49,7 @@ export default function Navigation() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-xl font-bold text-white hidden sm:block">
+            <span className="text-xl font-bold gradient-text hidden sm:block">
               Matheus Souza de Oliveira
             </span>
           </motion.div>
@@ -60,7 +60,7 @@ export default function Navigation() {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                className="text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium"
               >
                 {item.name}
               </button>
@@ -77,7 +77,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-5 h-5 text-medium-contrast" />
             </motion.a>
             <motion.a
               href="https://www.linkedin.com/in/patitow/"
@@ -87,7 +87,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-5 h-5 text-purple" />
             </motion.a>
             <Button variant="glass" size="sm" onClick={() => {
               const contactSection = document.querySelector('#contact');
@@ -120,7 +120,7 @@ export default function Navigation() {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2"
+                  className="block w-full text-left text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium py-2"
                 >
                   {item.name}
                 </button>
@@ -135,7 +135,7 @@ export default function Navigation() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5 text-medium-contrast" />
                 </motion.a>
                 <motion.a
                   href="https://www.linkedin.com/in/patitow/"
@@ -145,7 +145,7 @@ export default function Navigation() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5 text-purple" />
                 </motion.a>
                 <Button variant="glass" size="sm" className="flex-1" onClick={() => {
                   const contactSection = document.querySelector('#contact');

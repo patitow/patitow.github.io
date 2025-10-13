@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { Github, Linkedin, Mail, Download } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Hero() {
   const containerVariants = {
@@ -101,14 +101,14 @@ export default function Hero() {
           </motion.h1>
 
           <motion.h2
-            className="text-xl md:text-2xl text-gray-300 mb-6"
+            className="text-xl md:text-2xl text-gray-100 mb-6"
             variants={itemVariants}
           >
             Fullstack Developer & Game Developer
           </motion.h2>
 
           <motion.p
-            className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg text-gray-00 mb-8 max-w-2xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             Desenvolvedor apaixonado por criar experiências digitais incríveis. 
@@ -141,7 +141,7 @@ export default function Hero() {
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Github className="w-6 h-6 text-gray-300" />
+              <Github className="w-6 h-6 text-medium-contrast" />
             </motion.a>
             <motion.a
               href="https://www.linkedin.com/in/patitow/"
