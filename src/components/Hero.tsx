@@ -8,8 +8,8 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
@@ -20,7 +20,7 @@ export default function Hero() {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: "easeOut"
       }
     }
@@ -87,9 +87,11 @@ export default function Hero() {
             className="w-32 h-32 mx-auto mb-8 rounded-full glass border-4 border-white/20 overflow-hidden"
             variants={itemVariants}
           >
-            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-4xl font-bold text-white">
-              MO
-            </div>
+            <img 
+              src="/profilePic.png" 
+              alt="Matheus Souza de Oliveira" 
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           <motion.h1

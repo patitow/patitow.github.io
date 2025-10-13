@@ -122,17 +122,6 @@ export default function Contact() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Assunto
                   </label>
                   <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
@@ -155,7 +144,32 @@ export default function Contact() {
                   />
                 </div>
 
-                <Button variant="glass" size="lg" className="w-full">
+                <Button 
+                  variant="glass" 
+                  size="lg" 
+                  className="w-full"
+                  onClick={() => {
+                    const nome = (document.querySelector('input[type="text"]') as HTMLInputElement)?.value || '';
+                    const assunto = (document.querySelector('select') as HTMLSelectElement)?.value || '';
+                    const mensagem = (document.querySelector('textarea') as HTMLTextAreaElement)?.value || '';
+                    
+                    const assuntoMap = {
+                      'work': 'Oportunidade de Trabalho',
+                      'collaboration': 'Colaboração',
+                      'question': 'Pergunta',
+                      'other': 'Outro'
+                    };
+                    
+                    const assuntoTexto = assuntoMap[assunto as keyof typeof assuntoMap] || 'Contato';
+                    
+                    const subject = encodeURIComponent(`${assuntoTexto} - ${nome ? nome : 'Contato'}`);
+                    const body = encodeURIComponent(
+                      `Olá Matheus!\n\n${nome ? `Meu nome é ${nome}.\n\n` : ''}${mensagem ? `Mensagem:\n${mensagem}\n\n` : ''}Atenciosamente,${nome ? `\n${nome}` : ''}`
+                    );
+                    
+                    window.open(`mailto:patitowdev@gmail.com?subject=${subject}&body=${body}`, '_blank');
+                  }}
+                >
                   <Mail className="w-5 h-5 mr-2" />
                   Enviar Mensagem
                 </Button>

@@ -1,6 +1,6 @@
-# Matheus Oliveira - Portfolio
+# Matheus Souza de Oliveira - Portfolio
 
-Portfólio pessoal de Matheus Oliveira (Patitow) - Desenvolvedor Fullstack e Game Developer.
+Portfólio pessoal de Matheus Souza de Oliveira (Patitow) - Desenvolvedor Fullstack e Game Developer.
 
 ## 🚀 Tecnologias
 

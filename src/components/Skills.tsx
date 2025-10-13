@@ -118,7 +118,11 @@ export default function Skills() {
                   <motion.div
                     className={`h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 ${getLevelWidth(skill.level)}`}
                     initial={{ width: 0 }}
-                    whileInView={{ width: getLevelWidth(skill.level).replace('w-', '').replace('/', '') + '%' }}
+                    whileInView={{ 
+                      width: skill.level === 'expert' ? '100%' : 
+                             skill.level === 'advanced' ? '80%' : 
+                             skill.level === 'intermediate' ? '60%' : '40%'
+                    }}
                     transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
                     viewport={{ once: true }}
                   />
