@@ -87,7 +87,7 @@ export default function Contact() {
                       <p className="text-purple font-medium mb-2">
                         {method.value}
                       </p>
-                      <p className="text-sm text-medium-contrast">
+                      <p className="text-sm text-high-contrast">
                         {method.description}
                       </p>
                     </div>
@@ -110,36 +110,36 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-medium-contrast mb-2">
+                  <label className="block text-sm font-medium text-high-contrast mb-2">
                     Nome
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     placeholder="Seu nome completo"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-medium-contrast mb-2">
+                  <label className="block text-sm font-medium text-high-contrast mb-2">
                     Assunto
                   </label>
                   <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
-                    <option value="" className="bg-gray-900">Selecione um assunto</option>
-                    <option value="work" className="bg-gray-900">Oportunidade de Trabalho</option>
-                    <option value="collaboration" className="bg-gray-900">Colaboração</option>
-                    <option value="question" className="bg-gray-900">Pergunta</option>
-                    <option value="other" className="bg-gray-900">Outro</option>
+                    <option value="" className="bg-gray-900 text-gray-300">Selecione um assunto</option>
+                    <option value="work" className="bg-gray-900 text-white">Oportunidade de Trabalho</option>
+                    <option value="collaboration" className="bg-gray-900 text-white">Colaboração</option>
+                    <option value="question" className="bg-gray-900 text-white">Pergunta</option>
+                    <option value="other" className="bg-gray-900 text-white">Outro</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-medium-contrast mb-2">
+                  <label className="block text-sm font-medium text-high-contrast mb-2">
                     Mensagem
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
                     placeholder="Conte-me sobre seu projeto ou ideia..."
                   />
                 </div>
@@ -175,12 +175,12 @@ export default function Contact() {
                 </Button>
               </div>
 
-              <div className="mt-6 pt-6">
-                <div className="flex items-center space-x-2 text-medium-contrast text-sm">
-                  <MapPin className="w-4 h-4" />
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <div className="flex items-center space-x-2 text-high-contrast text-sm">
+                  <MapPin className="w-4 h-4 text-purple" />
                   <span>Recife, Pernambuco, Brasil</span>
                 </div>
-                <p className="text-medium-contrast text-sm mt-2">
+                <p className="text-high-contrast text-sm mt-2">
                   Geralmente respondo em até 24 horas. 
                   Para propostas urgentes, prefira o LinkedIn ou WhatsApp.
                 </p>

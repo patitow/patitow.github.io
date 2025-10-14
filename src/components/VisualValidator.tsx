@@ -102,13 +102,14 @@ const VisualValidator: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="fixed inset-0 pointer-events-none z-50" style={{ zIndex: 9999 }}>
       {/* Toggle Button */}
       <motion.button
-        className="fixed bottom-4 right-4 z-50 glass rounded-full p-3 text-purple hover:text-white transition-colors"
+        className="fixed bottom-4 right-4 pointer-events-auto glass rounded-full p-3 text-purple hover:text-white transition-colors shadow-lg"
         onClick={() => setIsVisible(!isVisible)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        style={{ zIndex: 10000 }}
       >
         <Eye className="w-6 h-6" />
       </motion.button>
@@ -117,11 +118,12 @@ const VisualValidator: React.FC = () => {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="fixed bottom-20 right-4 z-50 glass rounded-2xl p-6 max-w-sm w-full"
+            className="fixed bottom-20 right-4 pointer-events-auto glass rounded-2xl p-6 max-w-sm w-full shadow-xl"
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
+            style={{ zIndex: 10001 }}
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-high-contrast flex items-center">
@@ -206,7 +208,7 @@ const VisualValidator: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 

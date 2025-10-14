@@ -5,7 +5,7 @@
  * programaticamente durante o desenvolvimento.
  */
 
-import { VISUAL_TEST_PROTOCOL } from './visualTestProtocol.js';
+import { VISUAL_TEST_PROTOCOL } from './visualTestProtocol';
 
 /**
  * Executa todos os testes visuais do protocolo
