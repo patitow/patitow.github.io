@@ -1,9 +1,4 @@
-export interface Skill {
-  name: string;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  category: 'frontend' | 'backend' | 'ai' | 'mobile' | 'game' | 'design' | 'tools';
-  icon?: string;
-}
+import { Skill } from '@/types';
 
 export const skills: Skill[] = [
   // Frontend

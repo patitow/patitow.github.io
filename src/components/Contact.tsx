@@ -35,7 +35,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-contact section-auto px-6">
       <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -47,7 +47,7 @@ export default function Contact() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Vamos Conversar
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
             Estou sempre aberto a novas oportunidades, colaborações e conversas interessantes. 
             Não hesite em entrar em contato!
           </p>
@@ -69,7 +69,7 @@ export default function Contact() {
                   href={method.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block glass-interactive rounded-2xl p-6 grain-light group"
+                  className="block glass rounded-2xl p-6 glass-hover group"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
@@ -77,17 +77,17 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 glass-subtle rounded-xl flex items-center justify-center text-blue-400 group-hover:text-white transition-colors">
+                    <div className="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-purple group-hover:text-white transition-colors">
                       {method.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-white mb-1">
+                      <h3 className="text-lg font-semibold text-high-contrast mb-1">
                         {method.label}
                       </h3>
-                      <p className="text-blue-400 font-medium mb-2">
+                      <p className="text-purple font-medium mb-2">
                         {method.value}
                       </p>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-high-contrast">
                         {method.description}
                       </p>
                     </div>
@@ -98,7 +98,7 @@ export default function Contact() {
 
             {/* Contact Form Placeholder */}
             <motion.div
-              className="glass-strong grain-medium rounded-2xl p-8"
+              className="glass rounded-2xl p-8"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -110,36 +110,36 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-high-contrast mb-2">
                     Nome
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     placeholder="Seu nome completo"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-high-contrast mb-2">
                     Assunto
                   </label>
-                  <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                    <option value="" className="bg-gray-900">Selecione um assunto</option>
-                    <option value="work" className="bg-gray-900">Oportunidade de Trabalho</option>
-                    <option value="collaboration" className="bg-gray-900">Colaboração</option>
-                    <option value="question" className="bg-gray-900">Pergunta</option>
-                    <option value="other" className="bg-gray-900">Outro</option>
+                  <select className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+                    <option value="" className="bg-gray-900 text-gray-300">Selecione um assunto</option>
+                    <option value="work" className="bg-gray-900 text-white">Oportunidade de Trabalho</option>
+                    <option value="collaboration" className="bg-gray-900 text-white">Colaboração</option>
+                    <option value="question" className="bg-gray-900 text-white">Pergunta</option>
+                    <option value="other" className="bg-gray-900 text-white">Outro</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-high-contrast mb-2">
                     Mensagem
                   </label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 glass rounded-lg border border-white/10 bg-transparent text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
                     placeholder="Conte-me sobre seu projeto ou ideia..."
                   />
                 </div>
@@ -176,11 +176,11 @@ export default function Contact() {
               </div>
 
               <div className="mt-6 pt-6 border-t border-white/10">
-                <div className="flex items-center space-x-2 text-gray-400 text-sm">
-                  <MapPin className="w-4 h-4" />
+                <div className="flex items-center space-x-2 text-high-contrast text-sm">
+                  <MapPin className="w-4 h-4 text-purple" />
                   <span>Recife, Pernambuco, Brasil</span>
                 </div>
-                <p className="text-gray-400 text-sm mt-2">
+                <p className="text-high-contrast text-sm mt-2">
                   Geralmente respondo em até 24 horas. 
                   Para propostas urgentes, prefira o LinkedIn ou WhatsApp.
                 </p>

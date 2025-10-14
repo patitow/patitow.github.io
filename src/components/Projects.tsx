@@ -31,7 +31,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-projects section-auto px-6">
       <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -43,7 +43,7 @@ export default function Projects() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Meus Projetos
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-body-contrast max-w-3xl mx-auto">
             Uma seleção dos projetos que desenvolvi, desde aplicações web modernas até jogos interativos.
             Cada projeto representa um desafio único e uma oportunidade de aprender algo novo.
           </p>
@@ -90,7 +90,7 @@ export default function Projects() {
             transition={{ duration: 0.5 }}
           >
             <div className="glass rounded-2xl p-8 max-w-md mx-auto">
-              <p className="text-gray-400 text-lg">
+              <p className="text-medium-contrast text-lg">
                 Nenhum projeto encontrado nesta categoria.
               </p>
             </div>

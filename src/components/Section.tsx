@@ -1,24 +1,21 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { SectionProps } from '@/types';
+import { animationConfigs } from '@/utils/animations';
+import { cn } from '@/lib/utils';
 
-interface SectionProps {
-  children: ReactNode;
-  className?: string;
-  id?: string;
-}
-
-export default function Section({ children, className = '', id }: SectionProps) {
+export default function Section({ 
+  id, 
+  children, 
+  className = '' 
+}: SectionProps) {
   return (
     <motion.section
       id={id}
-      className={`relative ${className}`}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{
-        duration: 0.8,
-        ease: "easeOut"
-      }}
+      className={cn('relative', className)}
+      initial={animationConfigs.section.initial}
+      whileInView={animationConfigs.section.whileInView}
+      viewport={animationConfigs.section.viewport}
+      transition={animationConfigs.section.transition}
     >
       {/* Subtle background gradient for each section */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-transparent pointer-events-none" />

@@ -1,0 +1,288 @@
+/**
+ * PADRÕES VISUAIS AUTOMÁTICOS - PORTFOLIO PATITOW
+ * 
+ * Este arquivo aplica automaticamente os padrões visuais estabelecidos
+ * no protocolo de testes, garantindo consistência em toda a interface.
+ */
+
+/* ========================================
+   PADRÕES DE GRADIENTES SEAMLESS
+   ======================================== */
+
+/* Aplicação automática de gradientes de transição */
+.section-transition {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========================================
+   PADRÕES DE LEGIBILIDADE AUTOMÁTICOS
+   ======================================== */
+
+/* Aplicação automática de contraste em textos */
+.glass h1, .glass h2, .glass h3, .glass h4, .glass h5, .glass h6 {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.glass p, .glass span, .glass div {
+  color: #f8fafc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.glass .text-sm {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   PADRÕES DE BOTÕES AUTOMÁTICOS
+   ======================================== */
+
+/* Aplicação automática de hover states */
+.btn-primary, .btn-glass, .glass-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-primary:hover, .btn-glass:hover, .glass-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   PADRÕES DE HARMONIA CROMÁTICA
+   ======================================== */
+
+/* Aplicação automática da paleta roxa */
+:root {
+  --purple-primary: #a855f7;
+  --purple-light: #c084fc;
+  --purple-lighter: #d8b4fe;
+  --purple-dark: #9333ea;
+  --purple-darker: #7c3aed;
+  
+  --white-primary: #ffffff;
+  --white-light: #f8fafc;
+  --white-medium: #f1f5f9;
+  
+  --gray-dark: #334155;
+  --gray-darker: #1e293b;
+  --gray-darkest: #0f172a;
+}
+
+/* Aplicação automática de cores em ícones */
+.icon-purple {
+  color: var(--purple-primary);
+  transition: color 0.3s ease;
+}
+
+.icon-purple:hover {
+  color: var(--purple-light);
+}
+
+/* ========================================
+   PADRÕES DE ANIMAÇÕES SUAVES
+   ======================================== */
+
+/* Aplicação automática de transições suaves */
+* {
+  transition: 
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Remoção de transições em elementos que não precisam */
+*, *::before, *::after {
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* ========================================
+   PADRÕES DE GLASSMORPHISM CONSISTENTE
+   ======================================== */
+
+/* Aplicação automática de glass effect */
+.glass-auto {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-auto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  border-radius: 16px 16px 0 0;
+}
+
+/* ========================================
+   PADRÕES DE RESPONSIVIDADE AUTOMÁTICA
+   ======================================== */
+
+/* Aplicação automática de responsividade */
+@media (max-width: 768px) {
+  .glass-auto {
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+  }
+  
+  .glass h1, .glass h2, .glass h3 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-auto {
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+}
+
+/* ========================================
+   PADRÕES DE ACESSIBILIDADE
+   ======================================== */
+
+/* Melhoria automática de contraste para acessibilidade */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .glass h1, .glass h2, .glass h3, .glass h4, .glass h5, .glass h6 {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Redução de movimento para usuários sensíveis */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   PADRÕES DE PERFORMANCE VISUAL
+   ======================================== */
+
+/* Otimização de GPU para animações */
+.glass, .glass-auto, .btn-primary, .btn-glass {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Otimização de blur para performance */
+.glass, .glass-auto {
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+}
+
+/* ========================================
+   PADRÕES DE INTEGRAÇÃO SEAMLESS
+   ======================================== */
+
+/* Prevenção automática de overflow horizontal */
+body, html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Aplicação automática de scroll suave */
+* {
+  scroll-behavior: smooth;
+}
+
+/* ========================================
+   UTILITÁRIOS DE VALIDAÇÃO VISUAL
+   ======================================== */
+
+/* Classes para debug visual */
+.debug-gradient {
+  background: linear-gradient(45deg, 
+    rgba(255, 0, 0, 0.3) 0%, 
+    rgba(0, 255, 0, 0.3) 50%, 
+    rgba(0, 0, 255, 0.3) 100%
+  ) !important;
+}
+
+.debug-contrast {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #000000 !important;
+}
+
+.debug-overflow {
+  outline: 2px solid red !important;
+}
+
+/* ========================================
+   PADRÕES DE QUALIDADE VISUAL
+   ======================================== */
+
+/* Garantia de qualidade em todos os elementos */
+.quality-assured {
+  /* Contraste mínimo garantido */
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  /* Transições suaves garantidas */
+  transition: all 0.3s ease;
+  
+  /* Performance otimizada */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Aplicação automática em elementos críticos */
+h1, h2, h3, h4, h5, h6,
+button, .btn-primary, .btn-glass,
+.glass, .glass-auto {
+  @apply quality-assured;
+}

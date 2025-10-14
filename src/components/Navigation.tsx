@@ -1,28 +1,17 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Menu, X, Github, Linkedin } from 'lucide-react';
+import { useScroll } from '@/hooks';
+import { NAVIGATION_ITEMS } from '@/constants';
+import { animationConfigs } from '@/utils/animations';
+import { cn } from '@/lib/utils';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { isScrolled } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { name: 'Início', href: '#home' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Projetos', href: '#projects' },
-    { name: 'Habilidades', href: '#skills' },
-    { name: 'Contato', href: '#contact' },
-  ];
+  const navItems = NAVIGATION_ITEMS;
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -34,12 +23,13 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-strong grain-light border-b border-white/10' : 'bg-transparent'
-      }`}
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled ? 'navbar-glass' : 'bg-transparent'
+      )}
       initial={{ y: 0 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={animationConfigs.button.transition}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -49,7 +39,7 @@ export default function Navigation() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-xl font-bold text-white hidden sm:block">
+            <span className="text-xl font-bold gradient-text hidden sm:block">
               Matheus Souza de Oliveira
             </span>
           </motion.div>
@@ -60,7 +50,7 @@ export default function Navigation() {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                className="text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium"
               >
                 {item.name}
               </button>
@@ -77,7 +67,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-5 h-5 text-medium-contrast" />
             </motion.a>
             <motion.a
               href="https://www.linkedin.com/in/patitow/"
@@ -87,7 +77,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-5 h-5 text-purple" />
             </motion.a>
             <Button variant="glass" size="sm" onClick={() => {
               const contactSection = document.querySelector('#contact');
@@ -120,7 +110,7 @@ export default function Navigation() {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2"
+                  className="block w-full text-left text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium py-2"
                 >
                   {item.name}
                 </button>
@@ -135,7 +125,7 @@ export default function Navigation() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5 text-medium-contrast" />
                 </motion.a>
                 <motion.a
                   href="https://www.linkedin.com/in/patitow/"
@@ -145,7 +135,7 @@ export default function Navigation() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5 text-purple" />
                 </motion.a>
                 <Button variant="glass" size="sm" className="flex-1" onClick={() => {
                   const contactSection = document.querySelector('#contact');

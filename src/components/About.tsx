@@ -10,7 +10,7 @@ export default function About() {
   ];
 
   return (
-    <div className="py-20 px-6">
+    <div className="gradient-about section-full px-6">
       <div className="container mx-auto">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
@@ -32,7 +32,7 @@ export default function About() {
             </motion.h2>
 
             <motion.div
-              className="space-y-4 text-gray-300 leading-relaxed"
+              className="space-y-4 text-body-contrast leading-relaxed"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -46,16 +46,16 @@ export default function About() {
 
               <p>
                 Com mais de 4 anos de experiência em desenvolvimento, trabalho principalmente com 
-                <span className="text-blue-400 font-medium"> React</span>, 
-                <span className="text-blue-400 font-medium"> Node.js</span>, 
+                <span className="text-purple font-medium"> React</span>, 
+                <span className="text-purple font-medium"> Node.js</span>, 
                 <span className="text-purple-400 font-medium"> Unity</span> e 
-                <span className="text-green-400 font-medium"> Godot</span>. 
-                Meu foco está em <span className="text-yellow-400 font-medium">Ciência de Dados e IA</span>, 
+                <span className="text-purple-light font-medium"> Godot</span>. 
+                Meu foco está em <span className="text-purple font-medium">Ciência de Dados e IA</span>, 
                 criando soluções inovadoras que combinam funcionalidade e estética.
               </p>
 
               <p>
-                Sou <span className="text-blue-400 font-medium">Engenheiro da Computação formado na UPE</span> 
+                Sou <span className="text-purple font-medium">Engenheiro da Computação formado na UPE</span> 
                 e atualmente cursando <span className="text-purple-400 font-medium">mestrado em Engenharia da Computação</span>. 
                 Além do desenvolvimento web, sou um entusiasta do desenvolvimento de jogos, 
                 tendo criado vários títulos independentes.
@@ -64,7 +64,7 @@ export default function About() {
 
             {/* Location & Education */}
             <motion.div
-              className="flex items-center space-x-6 text-gray-400"
+              className="flex items-center space-x-6 text-medium-contrast"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
@@ -101,13 +101,13 @@ export default function About() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="flex justify-center mb-3 text-blue-400">
+                  <div className="flex justify-center mb-3 text-purple">
                     {stat.icon}
                   </div>
                   <div className="text-3xl font-bold gradient-text mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm text-medium-contrast">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -136,7 +136,7 @@ export default function About() {
                 ].map((interest, index) => (
                   <motion.span
                     key={interest}
-                    className="px-3 py-2 glass rounded-full text-sm text-gray-300"
+                    className="px-3 py-2 glass rounded-full text-sm text-glass-contrast"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.1 + 0.9 }}

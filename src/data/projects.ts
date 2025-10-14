@@ -1,21 +1,4 @@
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  technologies: string[];
-  category: 'web' | 'game' | 'mobile' | 'other';
-  status: 'completed' | 'in-progress' | 'planned';
-  links: {
-    demo?: string;
-    github?: string;
-    itch?: string;
-    website?: string;
-  };
-  image?: string;
-  featured?: boolean;
-  year: number;
-}
+import { Project } from '@/types';
 
 export const projects: Project[] = [
   {
