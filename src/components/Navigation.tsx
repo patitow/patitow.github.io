@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { handleSmoothScroll, smoothScrollTo } from '@/utils/scroll';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,6 +36,7 @@ export default function Navigation() {
           {/* Logo */}
           <a
             href="#home"
+            onClick={(e) => handleSmoothScroll(e, '#home')}
             className="text-xl font-semibold text-foreground hover:text-primary transition-colors"
           >
             Matheus Souza
@@ -46,6 +48,7 @@ export default function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.href)}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.label}
@@ -98,8 +101,11 @@ export default function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => {
+                    handleSmoothScroll(e, link.href);
+                    setIsMobileMenuOpen(false);
+                  }}
                   className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
