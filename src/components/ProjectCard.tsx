@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
 import { ExternalLink, Github, Gamepad2 } from 'lucide-react';
-import { Project } from '@/data/projects';
+import { Project } from '@/types';
+import { Button } from '@/components/ui/Button';
 
 interface ProjectCardProps {
   project: Project;
@@ -20,125 +21,102 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     }
   };
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'game':
-        return 'text-gray-300';
-      case 'web':
-        return 'text-gray-300';
-      case 'mobile':
-        return 'text-gray-300';
-      default:
-        return 'text-gray-400';
-    }
-  };
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
     >
-      <Card className="h-full glass glass-hover card-hover">
-        <CardHeader>
-          <div className="flex items-center justify-between mb-2">
-            <div className={`flex items-center space-x-2 ${getCategoryColor(project.category)}`}>
-              {getCategoryIcon(project.category)}
-              <span className="text-sm font-medium capitalize">{project.category}</span>
-            </div>
-            <span className="text-sm text-medium-contrast">{project.year}</span>
+      <Card className="h-full flex flex-col hover:shadow-lg transition-shadow">
+        {/* Image Placeholder */}
+        <div className="relative h-48 bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-6xl opacity-10">{getCategoryIcon(project.category)}</div>
           </div>
-          <CardTitle className="text-xl text-high-contrast">{project.title}</CardTitle>
-          <CardDescription className="text-medium-contrast">
-            {project.description}
-          </CardDescription>
+          <div className="absolute top-3 right-3">
+            <span
+              className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                project.category === 'game'
+                  ? 'bg-purple-500/20 text-purple-700 dark:text-purple-300'
+                  : project.category === 'web'
+                  ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300'
+                  : 'bg-green-500/20 text-green-700 dark:text-green-300'
+              }`}
+            >
+              {project.category === 'game' ? '🎮 Jogo' : project.category === 'web' ? '🌐 Web' : '📱 Mobile'}
+            </span>
+          </div>
+          <div className="absolute bottom-3 left-3">
+            <span className="text-xs text-muted-foreground">{project.year}</span>
+          </div>
+        </div>
+
+        <CardHeader>
+          <CardTitle className="text-xl">{project.title}</CardTitle>
+          <CardDescription>{project.description}</CardDescription>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="flex-1">
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.technologies.slice(0, 4).map((tech) => (
+            {project.technologies.slice(0, 5).map((tech: string) => (
               <span
                 key={tech}
-                className="px-2 py-1 text-xs glass rounded-full text-medium-contrast"
+                className="px-2.5 py-1 text-xs bg-secondary rounded-md text-secondary-foreground"
               >
                 {tech}
               </span>
             ))}
-            {project.technologies.length > 4 && (
-              <span className="px-2 py-1 text-xs glass rounded-full text-medium-contrast">
-                +{project.technologies.length - 4} mais
+            {project.technologies.length > 5 && (
+              <span className="px-2.5 py-1 text-xs text-muted-foreground">
+                +{project.technologies.length - 5}
               </span>
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <span className={`text-sm font-medium ${
-              project.status === 'completed' ? 'text-gray-300' : 
-              project.status === 'in-progress' ? 'text-purple-light' : 
-              'text-gray-400'
-            }`}>
-              {project.status === 'completed' ? '✅ Concluído' : 
-               project.status === 'in-progress' ? '🔄 Em desenvolvimento' : 
-               '📋 Planejado'}
+          <div className="flex items-center">
+            <span
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full ${
+                project.status === 'completed'
+                  ? 'bg-green-500/20 text-green-700 dark:text-green-300'
+                  : project.status === 'in-progress'
+                  ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300'
+                  : 'bg-gray-500/20 text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              {project.status === 'completed'
+                ? '✅ Concluído'
+                : project.status === 'in-progress'
+                ? '🔄 Em desenvolvimento'
+                : '📋 Planejado'}
             </span>
           </div>
         </CardContent>
 
-        <CardFooter className="flex flex-wrap gap-3 pt-4">
+        <CardFooter className="flex flex-wrap gap-2">
           {project.links.demo && (
-            <motion.a
-              href={project.links.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Ver demo do projeto ${project.title}`}
-              className="flex-1 min-w-0"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="glass rounded-xl p-3 text-center glass-hover">
-                <ExternalLink className="w-5 h-5 mx-auto mb-2 text-purple group-hover:text-purple-light transition-colors" />
-                <span className="text-sm font-medium text-high-contrast group-hover:text-white transition-colors">
-                  Demo
-                </span>
-              </div>
-            </motion.a>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
+              <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Demo
+              </a>
+            </Button>
           )}
           {project.links.github && (
-            <motion.a
-              href={project.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Ver código do projeto ${project.title} no GitHub`}
-              className="flex-1 min-w-0"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="glass rounded-xl p-3 text-center glass-hover">
-                <Github className="w-5 h-5 mx-auto mb-2 text-medium-contrast group-hover:text-white transition-colors" />
-                <span className="text-sm font-medium text-high-contrast group-hover:text-white transition-colors">
-                  GitHub
-                </span>
-              </div>
-            </motion.a>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
+              <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                <Github className="w-4 h-4 mr-2" />
+                GitHub
+              </a>
+            </Button>
           )}
           {project.links.itch && (
-            <motion.a
-              href={project.links.itch}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Jogar ${project.title} no itch.io`}
-              className="flex-1 min-w-0"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="glass rounded-xl p-3 text-center glass-hover">
-                <Gamepad2 className="w-5 h-5 mx-auto mb-2 text-purple group-hover:text-purple-light transition-colors" />
-                <span className="text-sm font-medium text-high-contrast group-hover:text-white transition-colors">
-                  itch.io
-                </span>
-              </div>
-            </motion.a>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
+              <a href={project.links.itch} target="_blank" rel="noopener noreferrer">
+                <Gamepad2 className="w-4 h-4 mr-2" />
+                itch.io
+              </a>
+            </Button>
           )}
         </CardFooter>
       </Card>

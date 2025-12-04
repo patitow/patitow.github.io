@@ -1,40 +1,11 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { skills, skillCategories, getSkillsByCategory } from '@/data/skills';
+import { skillCategories, getSkillsByCategory } from '@/data/skills';
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<keyof typeof skillCategories>('ai');
-
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case 'expert':
-        return 'text-purple';
-      case 'advanced':
-        return 'text-purple';
-      case 'intermediate':
-        return 'text-purple-light';
-      case 'beginner':
-        return 'text-gray-400';
-      default:
-        return 'text-gray-400';
-    }
-  };
-
-  const getLevelWidth = (level: string) => {
-    switch (level) {
-      case 'expert':
-        return 'w-full';
-      case 'advanced':
-        return 'w-4/5';
-      case 'intermediate':
-        return 'w-3/5';
-      case 'beginner':
-        return 'w-2/5';
-      default:
-        return 'w-1/5';
-    }
-  };
 
   const getLevelLabel = (level: string) => {
     switch (level) {
@@ -52,36 +23,36 @@ export default function Skills() {
   };
 
   return (
-    <div className="gradient-skills section-auto px-6">
-      <div className="container mx-auto">
+    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-6xl">
         <motion.div
-          className="text-center mb-16 pt-8"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
             Habilidades & Tecnologias
           </h2>
-          <p className="text-lg sm:text-xl text-body-contrast max-w-3xl mx-auto px-4 sm:px-0">
-            Tecnologias e ferramentas que domino, organizadas por categoria. 
-            Estou sempre aprendendo e evoluindo para acompanhar as últimas tendências do mercado.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Tecnologias e ferramentas que domino, organizadas por categoria.
+            Sempre aprendendo e evoluindo.
           </p>
         </motion.div>
 
         {/* Category Filter */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           {Object.entries(skillCategories).map(([key, label]) => (
             <Button
               key={key}
-              variant={activeCategory === key ? "glass" : "outline"}
+              variant={activeCategory === key ? 'default' : 'outline'}
               size="sm"
               onClick={() => setActiveCategory(key as keyof typeof skillCategories)}
             >
@@ -92,44 +63,52 @@ export default function Skills() {
 
         {/* Skills Grid */}
         <motion.div
-          className="glass rounded-2xl p-8 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {getSkillsByCategory(activeCategory).map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                className="space-y-2"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex justify-between items-center">
-                  <span className="text-white font-medium">{skill.name}</span>
-                  <span className={`text-sm ${getLevelColor(skill.level)}`}>
-                    {getLevelLabel(skill.level)}
-                  </span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-              <motion.div
-                className="h-2 rounded-full gradient-skill"
-                    initial={{ width: 0 }}
-                    whileInView={{ 
-                      width: skill.level === 'expert' ? '100%' : 
-                             skill.level === 'advanced' ? '80%' : 
-                             skill.level === 'intermediate' ? '60%' : '40%'
-                    }}
-                    transition={{ duration: 1, delay: index * 0.1 + 0.5 }}
+          <Card>
+            <CardContent className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {getSkillsByCategory(activeCategory).map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    className="space-y-2"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium">{skill.name}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {getLevelLabel(skill.level)}
+                      </span>
+                    </div>
+                    <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
+                      <motion.div
+                        className="h-full bg-primary rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{
+                          width:
+                            skill.level === 'expert'
+                              ? '100%'
+                              : skill.level === 'advanced'
+                              ? '80%'
+                              : skill.level === 'intermediate'
+                              ? '60%'
+                              : '40%',
+                        }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: index * 0.05 + 0.2 }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
 
         {/* Additional Info */}
@@ -137,31 +116,30 @@ export default function Skills() {
           className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="glass rounded-2xl p-6 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 gradient-text">
-              Sempre Aprendendo
-            </h3>
-            <p className="text-gray-400 mb-4">
-              Estou constantemente explorando novas tecnologias e melhorando minhas habilidades. 
-              Atualmente focado em IA, Cloud Computing e desenvolvimento mobile.
-            </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              <span className="px-3 py-1 glass rounded-full text-sm text-gray-300">
-                🚀 Next Steps: Golang & Rust
-              </span>
-              <span className="px-3 py-1 glass rounded-full text-sm text-gray-300">
-                🤖 AI Integration
-              </span>
-              <span className="px-3 py-1 glass rounded-full text-sm text-gray-300">
-                ☁️ Cloud & DevOps
-              </span>
-            </div>
-          </div>
+          <Card>
+            <CardContent className="p-8">
+              <h3 className="text-xl font-semibold mb-4">Sempre Aprendendo</h3>
+              <p className="text-muted-foreground mb-6">
+                Constantemente explorando novas tecnologias e melhorando minhas habilidades.
+                Atualmente focado em IA, Cloud Computing e desenvolvimento mobile.
+              </p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {['🚀 Golang & Rust', '🤖 AI Integration', '☁️ Cloud & DevOps'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1.5 text-sm bg-secondary rounded-full text-secondary-foreground"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

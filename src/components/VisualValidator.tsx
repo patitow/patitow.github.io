@@ -1,215 +1,132 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, XCircle, AlertTriangle, Eye, Palette, Type, MousePointer } from 'lucide-react';
-import { runAllVisualTests } from '@/utils/visualTestRunner';
+/**
+ * Visual Validator Component
+ * Componente React para validar visualmente o site em desenvolvimento
+ */
 
-interface ValidationResult {
-  category: string;
-  status: 'pass' | 'fail' | 'warning';
-  message: string;
-  details?: string;
+import { useEffect, useState } from 'react';
+import { runFullValidation, logValidationResults, type VisualIssue } from '@/utils/visualValidator';
+
+interface ValidationResults {
+  hovers: { passed: number; failed: number; issues: VisualIssue[] };
+  transitions: VisualIssue[];
+  contrast: VisualIssue[];
 }
 
-const VisualValidator: React.FC = () => {
+export default function VisualValidator() {
+  const [results, setResults] = useState<ValidationResults | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [validationResults, setValidationResults] = useState<ValidationResult[]>([]);
-  const [isRunning, setIsRunning] = useState(false);
+  const [autoRun, setAutoRun] = useState(false);
 
-  const runValidation = async () => {
-    setIsRunning(true);
-    
-    try {
-      // Executar testes reais
-      const testResults = runAllVisualTests();
-      
-      const results: ValidationResult[] = [
-        {
-          category: 'Gradientes',
-          status: testResults.gradients.status === 'PASS' ? 'pass' : 'fail',
-          message: testResults.gradients.status === 'PASS' ? 'Transições entre seções suaves' : 'Problemas encontrados nos gradientes',
-          details: `Seções testadas: ${Object.keys(testResults.gradients).filter(k => k !== 'status').join(', ')}`
-        },
-        {
-          category: 'Legibilidade',
-          status: testResults.legibility.status === 'PASS' ? 'pass' : 'fail',
-          message: testResults.legibility.status === 'PASS' ? 'Contraste de texto adequado' : 'Problemas de contraste encontrados',
-          details: `${testResults.legibility.passedContrast || 0}/${testResults.legibility.totalElements || 0} elementos com contraste adequado`
-        },
-        {
-          category: 'Botões',
-          status: testResults.buttons.status === 'PASS' ? 'pass' : 'fail',
-          message: testResults.buttons.status === 'PASS' ? 'Estados hover funcionais' : 'Problemas nos botões',
-          details: `${testResults.buttons.passedHover || 0}/${testResults.buttons.totalButtons || 0} botões com transições adequadas`
-        },
-        {
-          category: 'Harmonia Cromática',
-          status: testResults.colorHarmony.status === 'PASS' ? 'pass' : 'fail',
-          message: testResults.colorHarmony.status === 'PASS' ? 'Paleta roxa consistente' : 'Inconsistências na paleta',
-          details: `${testResults.colorHarmony.correctPurpleUsage || 0}/${testResults.colorHarmony.totalPurpleElements || 0} elementos com cor roxa correta`
-        },
-        {
-          category: 'Animações',
-          status: testResults.transitions.status === 'PASS' ? 'pass' : 'warning',
-          message: testResults.transitions.status === 'PASS' ? 'Transições suaves' : 'Animações podem ser otimizadas',
-          details: `${testResults.transitions.smoothTransitions || 0}/${testResults.transitions.totalAnimatedElements || 0} elementos com transições suaves`
-        },
-        {
-          category: 'Integração',
-          status: testResults.seamlessIntegration.status === 'PASS' ? 'pass' : 'fail',
-          message: testResults.seamlessIntegration.status === 'PASS' ? 'Integração seamless' : 'Problemas de integração',
-          details: 'Overflow, responsividade e performance verificados'
-        }
-      ];
-      
-      setValidationResults(results);
-    } catch (error) {
-      console.error('Erro ao executar testes visuais:', error);
-      setValidationResults([{
-        category: 'Erro',
-        status: 'fail',
-        message: 'Erro ao executar testes',
-        details: error instanceof Error ? error.message : 'Erro desconhecido'
-      }]);
-    } finally {
-      setIsRunning(false);
-    }
+  const runValidation = () => {
+    const validationResults = runFullValidation();
+    setResults(validationResults);
+    logValidationResults(validationResults);
+    setIsVisible(true);
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'pass':
-        return <CheckCircle className="w-5 h-5 text-green-400" />;
-      case 'fail':
-        return <XCircle className="w-5 h-5 text-red-400" />;
-      case 'warning':
-        return <AlertTriangle className="w-5 h-5 text-yellow-400" />;
-      default:
-        return null;
+  useEffect(() => {
+    // Auto-run em desenvolvimento
+    if (import.meta.env.DEV && autoRun) {
+      const timer = setTimeout(() => {
+        runValidation();
+      }, 2000);
+      return () => clearTimeout(timer);
     }
-  };
+  }, [autoRun]);
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pass':
-        return 'border-green-400 bg-green-400/10';
-      case 'fail':
-        return 'border-red-400 bg-red-400/10';
-      case 'warning':
-        return 'border-yellow-400 bg-yellow-400/10';
-      default:
-        return 'border-gray-400 bg-gray-400/10';
-    }
-  };
+  if (!isVisible && !results) {
+    return (
+      <div className="fixed bottom-4 right-4 z-50">
+        <button
+          onClick={runValidation}
+          className="glass-cyber px-4 py-2 rounded-lg text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-all"
+        >
+          🎨 Validar Visual
+        </button>
+      </div>
+    );
+  }
+
+  if (!results) return null;
+
+  const totalIssues = results.hovers.issues.length + results.transitions.length + results.contrast.length;
+  const hasErrors = results.hovers.failed > 0 || totalIssues > 0;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50" style={{ zIndex: 9999 }}>
-      {/* Toggle Button */}
-      <motion.button
-        className="fixed bottom-4 right-4 pointer-events-auto glass rounded-full p-3 text-purple hover:text-white transition-colors shadow-lg"
-        onClick={() => setIsVisible(!isVisible)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        style={{ zIndex: 10000 }}
-      >
-        <Eye className="w-6 h-6" />
-      </motion.button>
-
-      {/* Validation Panel */}
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            className="fixed bottom-20 right-4 pointer-events-auto glass rounded-2xl p-6 max-w-sm w-full shadow-xl"
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-            style={{ zIndex: 10001 }}
+    <div className="fixed bottom-4 right-4 z-50 max-w-md">
+      <div className="card-cyber p-4 max-h-96 overflow-y-auto">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold text-cyan-300">Validação Visual</h3>
+          <button
+            onClick={() => setIsVisible(false)}
+            className="text-gray-400 hover:text-white transition-colors"
           >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-high-contrast flex items-center">
-                <Palette className="w-5 h-5 mr-2 text-purple" />
-                Validador Visual
-              </h3>
-              <button
-                className="text-medium-contrast hover:text-high-contrast transition-colors"
-                onClick={() => setIsVisible(false)}
-              >
-                ✕
-              </button>
-            </div>
+            ✕
+          </button>
+        </div>
 
-            <div className="space-y-3 mb-4">
-              <button
-                className="w-full btn-glass px-4 py-2 text-sm font-medium flex items-center justify-center"
-                onClick={runValidation}
-                disabled={isRunning}
-              >
-                {isRunning ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Validando...
-                  </>
-                ) : (
-                  <>
-                    <MousePointer className="w-4 h-4 mr-2" />
-                    Executar Testes
-                  </>
-                )}
-              </button>
+        <div className="space-y-4">
+          {/* Hovers */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-semibold text-white">Hovers</span>
+              <span className={`text-xs font-bold ${
+                results.hovers.failed === 0 ? 'text-green-400' : 'text-red-400'
+              }`}>
+                {results.hovers.passed}/{results.hovers.passed + results.hovers.failed}
+              </span>
             </div>
-
-            {validationResults.length > 0 && (
-              <div className="space-y-2 max-h-64 overflow-y-auto">
-                {validationResults.map((result, index) => (
-                  <motion.div
-                    key={index}
-                    className={`p-3 rounded-lg border ${getStatusColor(result.status)}`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <div className="flex items-start space-x-2">
-                      {getStatusIcon(result.status)}
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-high-contrast">
-                          {result.category}
-                        </div>
-                        <div className="text-xs text-medium-contrast mt-1">
-                          {result.message}
-                        </div>
-                        {result.details && (
-                          <div className="text-xs text-gray-400 mt-1">
-                            {result.details}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
+            {results.hovers.issues.length > 0 && (
+              <div className="space-y-1">
+                {results.hovers.issues.map((issue, idx) => (
+                  <div key={idx} className="text-xs text-yellow-300 bg-yellow-500/10 p-2 rounded">
+                    <strong>{issue.element}:</strong> {issue.message}
+                  </div>
                 ))}
               </div>
             )}
+          </div>
 
-            <div className="mt-4 pt-4 border-t border-white/10">
-              <div className="text-xs text-medium-contrast space-y-1">
-                <div className="flex items-center">
-                  <CheckCircle className="w-3 h-3 text-green-400 mr-2" />
-                  <span>Protocolo Visual Ativo</span>
-                </div>
-                <div className="flex items-center">
-                  <Type className="w-3 h-3 text-purple mr-2" />
-                  <span>Contraste WCAG AA+</span>
-                </div>
-                <div className="flex items-center">
-                  <Palette className="w-3 h-3 text-purple mr-2" />
-                  <span>Harmonia Cromática</span>
-                </div>
+          {/* Transitions */}
+          {results.transitions.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-semibold text-white">Transições</span>
+                <span className="text-xs font-bold text-yellow-400">
+                  {results.transitions.length} issues
+                </span>
+              </div>
+              <div className="space-y-1">
+                {results.transitions.map((issue, idx) => (
+                  <div key={idx} className="text-xs text-blue-300 bg-blue-500/10 p-2 rounded">
+                    <strong>{issue.element}:</strong> {issue.message}
+                  </div>
+                ))}
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+
+          {/* Summary */}
+          <div className="pt-2 border-t border-white/10">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-white">Total</span>
+              <span className={`text-xs font-bold ${
+                totalIssues === 0 ? 'text-green-400' : 'text-red-400'
+              }`}>
+                {totalIssues} issues
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={runValidation}
+            className="w-full btn-cyber py-2 text-sm mt-2"
+          >
+            Revalidar
+          </button>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
-export default VisualValidator;
