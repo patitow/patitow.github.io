@@ -51,6 +51,7 @@ export default function Navigation() {
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
                 className="text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium"
+                aria-label={`Navegar para seção ${item.name}`}
               >
                 {item.name}
               </button>
@@ -63,6 +64,7 @@ export default function Navigation() {
               href="https://github.com/patitow"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visitar perfil do GitHub"
               className="glass rounded-lg p-2 glass-hover"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -73,16 +75,22 @@ export default function Navigation() {
               href="https://www.linkedin.com/in/patitow/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visitar perfil do LinkedIn"
               className="glass rounded-lg p-2 glass-hover"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
               <Linkedin className="w-5 h-5 text-purple" />
             </motion.a>
-            <Button variant="glass" size="sm" onClick={() => {
-              const contactSection = document.querySelector('#contact');
-              contactSection?.scrollIntoView({ behavior: 'smooth' });
-            }}>
+            <Button 
+              variant="glass" 
+              size="sm" 
+              onClick={() => {
+                const contactSection = document.querySelector('#contact');
+                contactSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              aria-label="Navegar para seção de contato"
+            >
               Contato
             </Button>
           </div>
@@ -91,6 +99,9 @@ export default function Navigation() {
           <button
             className="md:hidden glass rounded-lg p-2 glass-hover"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -99,11 +110,14 @@ export default function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             className="md:hidden mt-4 glass rounded-2xl p-6"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            role="menu"
+            aria-label="Menu de navegação mobile"
           >
             <div className="space-y-4">
               {navItems.map((item) => (
@@ -111,6 +125,8 @@ export default function Navigation() {
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
                   className="block w-full text-left text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium py-2"
+                  role="menuitem"
+                  aria-label={`Navegar para seção ${item.name}`}
                 >
                   {item.name}
                 </button>
@@ -121,6 +137,7 @@ export default function Navigation() {
                   href="https://github.com/patitow"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visitar perfil do GitHub"
                   className="glass rounded-lg p-2 glass-hover"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -131,16 +148,23 @@ export default function Navigation() {
                   href="https://www.linkedin.com/in/patitow/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visitar perfil do LinkedIn"
                   className="glass rounded-lg p-2 glass-hover"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <Linkedin className="w-5 h-5 text-purple" />
                 </motion.a>
-                <Button variant="glass" size="sm" className="flex-1" onClick={() => {
-                  const contactSection = document.querySelector('#contact');
-                  contactSection?.scrollIntoView({ behavior: 'smooth' });
-                }}>
+                <Button 
+                  variant="glass" 
+                  size="sm" 
+                  className="flex-1" 
+                  onClick={() => {
+                    const contactSection = document.querySelector('#contact');
+                    contactSection?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  aria-label="Navegar para seção de contato"
+                >
                   Contato
                 </Button>
               </div>

@@ -40,6 +40,7 @@ export default function Footer() {
               href="https://github.com/patitow"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visitar perfil do GitHub"
               className="glass rounded-full p-3 glass-hover"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -50,6 +51,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/patitow/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visitar perfil do LinkedIn"
               className="glass rounded-full p-3 glass-hover"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -58,6 +60,7 @@ export default function Footer() {
             </motion.a>
             <motion.a
               href="mailto:patitowdev@gmail.com"
+              aria-label="Enviar email para patitowdev@gmail.com"
               className="glass rounded-full p-3 glass-hover"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -68,11 +71,12 @@ export default function Footer() {
               href="https://patitow.itch.io/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visitar perfil no itch.io"
               className="glass rounded-full p-3 glass-hover"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <span className="text-xl">🎮</span>
+              <span className="text-xl" role="img" aria-label="Ícone de jogo">🎮</span>
             </motion.a>
           </motion.div>
 
@@ -84,16 +88,16 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <a href="#about" className="text-medium-contrast hover:text-high-contrast transition-colors">
+            <a href="#about" className="text-medium-contrast hover:text-high-contrast transition-colors" aria-label="Navegar para seção Sobre">
               Sobre
             </a>
-            <a href="#projects" className="text-medium-contrast hover:text-high-contrast transition-colors">
+            <a href="#projects" className="text-medium-contrast hover:text-high-contrast transition-colors" aria-label="Navegar para seção Projetos">
               Projetos
             </a>
-            <a href="#skills" className="text-medium-contrast hover:text-high-contrast transition-colors">
+            <a href="#skills" className="text-medium-contrast hover:text-high-contrast transition-colors" aria-label="Navegar para seção Habilidades">
               Habilidades
             </a>
-            <a href="#contact" className="text-medium-contrast hover:text-high-contrast transition-colors">
+            <a href="#contact" className="text-medium-contrast hover:text-high-contrast transition-colors" aria-label="Navegar para seção Contato">
               Contato
             </a>
           </motion.div>

@@ -61,10 +61,10 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Habilidades & Tecnologias
           </h2>
-          <p className="text-xl text-body-contrast max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-body-contrast max-w-3xl mx-auto px-4 sm:px-0">
             Tecnologias e ferramentas que domino, organizadas por categoria. 
             Estou sempre aprendendo e evoluindo para acompanhar as últimas tendências do mercado.
           </p>

@@ -22,7 +22,7 @@ export default function About() {
           {/* Text Content */}
           <div className="space-y-6">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold gradient-text"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
@@ -64,19 +64,19 @@ export default function About() {
 
             {/* Location & Education */}
             <motion.div
-              className="flex items-center space-x-6 text-medium-contrast"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-medium-contrast"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="flex items-center space-x-2">
-                <MapPin className="w-5 h-5" />
+                <MapPin className="w-5 h-5 flex-shrink-0" />
                 <span>Recife, Pernambuco, Brasil</span>
               </div>
               <div className="flex items-center space-x-2">
-                <GraduationCap className="w-5 h-5" />
-                <span>UPE - Eng. Computação (Formado + Mestrado)</span>
+                <GraduationCap className="w-5 h-5 flex-shrink-0" />
+                <span className="text-sm sm:text-base">UPE - Eng. Computação (Formado + Mestrado)</span>
               </div>
             </motion.div>
           </div>

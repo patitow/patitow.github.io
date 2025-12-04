@@ -31,7 +31,7 @@ export default function Hero() {
       {/* Background gradient with parallax effect */}
       
       {/* Animated background elements with improved performance */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div
           className="absolute top-0 right-0 w-80 h-80 glass rounded-full opacity-20"
           animate={{
@@ -44,6 +44,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: 'transform' }}
         />
         <motion.div
           className="absolute -bottom-40 -left-40 w-96 h-96 glass rounded-full opacity-10"
@@ -57,6 +58,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: 'transform' }}
         />
         <motion.div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 glass rounded-full opacity-5"
@@ -69,6 +71,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
+          style={{ willChange: 'transform, opacity' }}
         />
       </div>
 
@@ -79,11 +82,11 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div
-          className="glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto"
+          className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto"
           variants={itemVariants}
         >
           <motion.div
-            className="w-32 h-32 mx-auto mb-8 rounded-full glass border-4 border-purple/30 overflow-hidden"
+            className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 sm:mb-8 rounded-full glass border-4 border-purple/30 overflow-hidden"
             variants={itemVariants}
           >
             <img 
@@ -94,21 +97,21 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-4 gradient-text"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text"
             variants={itemVariants}
           >
             Matheus Souza de Oliveira
           </motion.h1>
 
           <motion.h2
-            className="text-xl md:text-2xl text-gray-100 mb-6"
+            className="text-lg sm:text-xl md:text-2xl text-gray-100 mb-6"
             variants={itemVariants}
           >
             Fullstack Developer & Game Developer
           </motion.h2>
 
           <motion.p
-            className="text-lg text-gray-00 mb-8 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-body-contrast mb-8 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0"
             variants={itemVariants}
           >
             Desenvolvedor apaixonado por criar experiências digitais incríveis. 
@@ -117,14 +120,18 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-8"
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
             variants={itemVariants}
           >
-      <Button className="btn-glass px-8 py-3 rounded-xl font-medium" onClick={() => {
-        const contactSection = document.querySelector('#contact');
-        contactSection?.scrollIntoView({ behavior: 'smooth' });
-      }}>
-        <Mail className="w-5 h-5 mr-2" />
+      <Button 
+        className="btn-glass px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-medium text-sm sm:text-base" 
+        onClick={() => {
+          const contactSection = document.querySelector('#contact');
+          contactSection?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        aria-label="Navegar para seção de contato"
+      >
+        <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
         Contato
       </Button>
           </motion.div>
@@ -137,31 +144,34 @@ export default function Hero() {
               href="https://github.com/patitow"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-full p-4 glass-hover"
+              aria-label="Visitar perfil do GitHub"
+              className="glass rounded-full p-3 sm:p-4 glass-hover"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Github className="w-6 h-6 text-medium-contrast" />
+              <Github className="w-5 h-5 sm:w-6 sm:h-6 text-medium-contrast" />
             </motion.a>
             <motion.a
               href="https://www.linkedin.com/in/patitow/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-full p-4 glass-hover"
+              aria-label="Visitar perfil do LinkedIn"
+              className="glass rounded-full p-3 sm:p-4 glass-hover"
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Linkedin className="w-6 h-6 text-purple" />
+              <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-purple" />
             </motion.a>
             <motion.a
               href="https://patitow.itch.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass rounded-full p-4 glass-hover"
+              aria-label="Visitar perfil no itch.io"
+              className="glass rounded-full p-3 sm:p-4 glass-hover"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-xl">🎮</span>
+              <span className="text-lg sm:text-xl" role="img" aria-label="Ícone de jogo">🎮</span>
             </motion.a>
           </motion.div>
         </motion.div>
