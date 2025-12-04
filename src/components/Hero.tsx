@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Mail, ArrowDown } from 'lucide-react';
+import { smoothScrollTo } from '@/utils/scroll';
 
 export default function Hero() {
   return (
@@ -47,13 +48,26 @@ export default function Hero() {
 
           {/* Title */}
           <motion.p
-            className="text-xl sm:text-2xl text-muted-foreground mb-6"
+            className="text-xl sm:text-2xl text-muted-foreground mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             Fullstack Developer & Game Developer
           </motion.p>
+
+          {/* Company Badge */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20">
+              <span>🏢</span>
+              <span>Fundador - Patitow Labs</span>
+            </span>
+          </motion.div>
 
           {/* Description */}
           <motion.p
@@ -76,7 +90,7 @@ export default function Hero() {
             <Button
               size="lg"
               onClick={() => {
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                smoothScrollTo('#contact', 1500);
               }}
             >
               <Mail className="w-4 h-4 mr-2" />
@@ -86,7 +100,7 @@ export default function Hero() {
               variant="outline"
               size="lg"
               onClick={() => {
-                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+                smoothScrollTo('#projects', 1500);
               }}
             >
               Ver Projetos
@@ -102,7 +116,7 @@ export default function Hero() {
           >
             <motion.button
               onClick={() => {
-                document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+                smoothScrollTo('#about', 2000);
               }}
               className="text-muted-foreground hover:text-foreground transition-colors"
               animate={{ y: [0, 10, 0] }}

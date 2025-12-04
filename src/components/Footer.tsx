@@ -1,4 +1,5 @@
 import { Github, Linkedin, MessageSquare } from 'lucide-react';
+import { handleSmoothScroll } from '@/utils/scroll';
 
 export default function Footer() {
   return (
@@ -19,24 +20,28 @@ export default function Footer() {
             <nav className="flex flex-col gap-2">
               <a
                 href="#about"
+                onClick={(e) => handleSmoothScroll(e, '#about')}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Sobre
               </a>
               <a
                 href="#projects"
+                onClick={(e) => handleSmoothScroll(e, '#projects')}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Projetos
               </a>
               <a
                 href="#skills"
+                onClick={(e) => handleSmoothScroll(e, '#skills')}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Habilidades
               </a>
               <a
                 href="#contact"
+                onClick={(e) => handleSmoothScroll(e, '#contact')}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 Contato

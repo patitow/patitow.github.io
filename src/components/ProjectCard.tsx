@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
 import { ExternalLink, Github, Gamepad2 } from 'lucide-react';
 import { Project } from '@/types';
-import { Button } from '@/components/ui/Button';
 
 interface ProjectCardProps {
   project: Project;
@@ -95,28 +94,37 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
         <CardFooter className="flex flex-wrap gap-2">
           {project.links.demo && (
-            <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
-              <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Demo
-              </a>
-            </Button>
+            <a
+              href={project.links.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 w-full sm:w-auto"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Demo
+            </a>
           )}
           {project.links.github && (
-            <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
-              <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4 mr-2" />
-                GitHub
-              </a>
-            </Button>
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 w-full sm:w-auto"
+            >
+              <Github className="w-4 h-4 mr-2" />
+              GitHub
+            </a>
           )}
           {project.links.itch && (
-            <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
-              <a href={project.links.itch} target="_blank" rel="noopener noreferrer">
-                <Gamepad2 className="w-4 h-4 mr-2" />
-                itch.io
-              </a>
-            </Button>
+            <a
+              href={project.links.itch}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 w-full sm:w-auto"
+            >
+              <Gamepad2 className="w-4 h-4 mr-2" />
+              itch.io
+            </a>
           )}
         </CardFooter>
       </Card>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, GraduationCap, Code, Gamepad2 } from 'lucide-react';
+import { MapPin, GraduationCap, Code, Gamepad2, Building2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/Card';
 
 export default function About() {
@@ -11,8 +11,8 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-6xl">
+    <section id="about" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto max-w-6xl w-full">
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
           initial={{ opacity: 0, y: 20 }}
@@ -56,11 +56,15 @@ export default function About() {
                 <span className="text-foreground font-semibold"> mestrando em Engenharia da Computação</span>.
                 Entusiasta do desenvolvimento de jogos independentes.
               </p>
+
+              <p>
+                Fundador da <span className="text-foreground font-semibold">Patitow Labs</span>, onde transformo ideias em soluções tecnológicas inovadoras.
+              </p>
             </motion.div>
 
-            {/* Location & Education */}
+            {/* Location, Education & Company */}
             <motion.div
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-muted-foreground"
+              className="flex flex-col gap-3 text-sm text-muted-foreground"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -73,6 +77,10 @@ export default function About() {
               <div className="flex items-center gap-2">
                 <GraduationCap className="w-4 h-4" />
                 <span>UPE - Eng. Computação (Formado + Mestrado)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Building2 className="w-4 h-4" />
+                <span className="text-foreground font-medium">Fundador & CEO - Patitow Labs</span>
               </div>
             </motion.div>
           </div>
