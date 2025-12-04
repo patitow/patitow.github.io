@@ -91,6 +91,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.demo}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Ver demo do projeto ${project.title}`}
               className="flex-1 min-w-0"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -108,6 +109,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Ver código do projeto ${project.title} no GitHub`}
               className="flex-1 min-w-0"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -125,6 +127,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.links.itch}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Jogar ${project.title} no itch.io`}
               className="flex-1 min-w-0"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}

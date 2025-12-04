@@ -40,10 +40,10 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Meus Projetos
           </h2>
-          <p className="text-xl text-body-contrast max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-body-contrast max-w-3xl mx-auto px-4 sm:px-0">
             Uma seleção dos projetos que desenvolvi, desde aplicações web modernas até jogos interativos.
             Cada projeto representa um desafio único e uma oportunidade de aprender algo novo.
           </p>
