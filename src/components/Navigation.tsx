@@ -1,177 +1,133 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { Button } from '@/components/ui/Button';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin } from 'lucide-react';
-import { useScroll } from '@/hooks';
-import { NAVIGATION_ITEMS } from '@/constants';
-import { animationConfigs } from '@/utils/animations';
-import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/Button';
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const { isScrolled } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = NAVIGATION_ITEMS;
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsOpen(false);
-  };
+  const navLinks = [
+    { href: '#about', label: 'Sobre' },
+    { href: '#projects', label: 'Projetos' },
+    { href: '#skills', label: 'Habilidades' },
+    { href: '#contact', label: 'Contato' },
+  ];
 
   return (
-    <motion.nav
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'navbar-glass' : 'bg-transparent'
-      )}
-      initial={{ y: 0 }}
-      animate={{ y: 0 }}
-      transition={animationConfigs.button.transition}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-background/80 backdrop-blur-sm border-b border-border'
+          : 'bg-transparent'
+      }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <a
+            href="#home"
+            className="text-xl font-semibold text-foreground hover:text-primary transition-colors"
           >
-            <span className="text-xl font-bold gradient-text hidden sm:block">
-              Matheus Souza de Oliveira
-            </span>
-          </motion.div>
+            Matheus Souza
+          </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium"
-                aria-label={`Navegar para seção ${item.name}`}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                {item.name}
-              </button>
+                {link.label}
+              </a>
             ))}
-          </div>
-
-          {/* Social Links */}
-          <div className="hidden md:flex items-center space-x-4">
-            <motion.a
-              href="https://github.com/patitow"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar perfil do GitHub"
-              className="glass rounded-lg p-2 glass-hover"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Github className="w-5 h-5 text-medium-contrast" />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/patitow/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar perfil do LinkedIn"
-              className="glass rounded-lg p-2 glass-hover"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Linkedin className="w-5 h-5 text-purple" />
-            </motion.a>
-            <Button 
-              variant="glass" 
-              size="sm" 
-              onClick={() => {
-                const contactSection = document.querySelector('#contact');
-                contactSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              aria-label="Navegar para seção de contato"
-            >
-              Contato
-            </Button>
+            <div className="flex items-center gap-4 ml-4">
+              <a
+                href="https://github.com/patitow"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/patitow/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden glass rounded-lg p-2 glass-hover"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
+            className="md:hidden text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
           <motion.div
-            id="mobile-menu"
-            className="md:hidden mt-4 glass rounded-2xl p-6"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            role="menu"
-            aria-label="Menu de navegação mobile"
+            className="md:hidden bg-background border-t border-border"
           >
-            <div className="space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-medium-contrast hover:text-high-contrast transition-colors duration-200 font-medium py-2"
-                  role="menuitem"
-                  aria-label={`Navegar para seção ${item.name}`}
+            <div className="container mx-auto px-4 py-4 space-y-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item.name}
-                </button>
+                  {link.label}
+                </a>
               ))}
-              
-              <div className="flex items-center space-x-4 pt-4 border-t border-white/10">
-                <motion.a
+              <div className="flex items-center gap-4 pt-4 border-t border-border">
+                <a
                   href="https://github.com/patitow"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visitar perfil do GitHub"
-                  className="glass rounded-lg p-2 glass-hover"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  aria-label="GitHub"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <Github className="w-5 h-5 text-medium-contrast" />
-                </motion.a>
-                <motion.a
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
                   href="https://www.linkedin.com/in/patitow/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visitar perfil do LinkedIn"
-                  className="glass rounded-lg p-2 glass-hover"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                  aria-label="LinkedIn"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <Linkedin className="w-5 h-5 text-purple" />
-                </motion.a>
-                <Button 
-                  variant="glass" 
-                  size="sm" 
-                  className="flex-1" 
-                  onClick={() => {
-                    const contactSection = document.querySelector('#contact');
-                    contactSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  aria-label="Navegar para seção de contato"
-                >
-                  Contato
-                </Button>
+                  <Linkedin className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </nav>
   );
 }

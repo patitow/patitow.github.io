@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Button } from '@/components/ui/Button';
 import ProjectCard from '@/components/ProjectCard';
 import { projects, featuredProjects, webProjects, gameProjects, mobileProjects } from '@/data/projects';
+import { Button } from '@/components/ui/Button';
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'featured' | 'web' | 'game' | 'mobile'>('featured');
@@ -31,39 +31,37 @@ export default function Projects() {
   ];
 
   return (
-    <div className="gradient-projects section-auto px-6">
-      <div className="container mx-auto">
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">
             Meus Projetos
           </h2>
-          <p className="text-lg sm:text-xl text-body-contrast max-w-3xl mx-auto px-4 sm:px-0">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Uma seleção dos projetos que desenvolvi, desde aplicações web modernas até jogos interativos.
-            Cada projeto representa um desafio único e uma oportunidade de aprender algo novo.
           </p>
         </motion.div>
 
         {/* Category Filter */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           {categories.map((category) => (
             <Button
               key={category.id}
-              variant={activeCategory === category.id ? "glass" : "outline"}
+              variant={activeCategory === category.id ? 'default' : 'outline'}
               size="sm"
               onClick={() => setActiveCategory(category.id as any)}
-              className="relative"
             >
               {category.label}
               <span className="ml-2 text-xs opacity-70">({category.count})</span>
@@ -73,7 +71,7 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           layout
         >
           {getProjectsByCategory().map((project, index) => (
@@ -89,14 +87,12 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="glass rounded-2xl p-8 max-w-md mx-auto">
-              <p className="text-medium-contrast text-lg">
-                Nenhum projeto encontrado nesta categoria.
-              </p>
-            </div>
+            <p className="text-muted-foreground">
+              Nenhum projeto encontrado nesta categoria.
+            </p>
           </motion.div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

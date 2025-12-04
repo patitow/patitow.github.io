@@ -1,181 +1,119 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Mail, ArrowDown } from 'lucide-react';
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section id="home" className="gradient-bg section-full relative overflow-hidden">
-      {/* Background gradient with parallax effect */}
-      
-      {/* Animated background elements with improved performance */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16"
+    >
+      <div className="container mx-auto max-w-4xl text-center">
         <motion.div
-          className="absolute top-0 right-0 w-80 h-80 glass rounded-full opacity-20"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.1, 1],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ willChange: 'transform' }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 glass rounded-full opacity-10"
-          animate={{
-            rotate: [0, -360],
-            scale: [1, 1.05, 1],
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ willChange: 'transform' }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 glass rounded-full opacity-5"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ willChange: 'transform, opacity' }}
-        />
-      </div>
-
-      <motion.div
-        className="container mx-auto px-6 text-center relative z-10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div
-          className="glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto"
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
+          {/* Profile Picture */}
           <motion.div
-            className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 sm:mb-8 rounded-full glass border-4 border-purple/30 overflow-hidden"
-            variants={itemVariants}
+            className="mb-8 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img 
-              src="/assets/profilePic.png" 
-              alt="Matheus Souza de Oliveira" 
-              className="w-full h-full object-cover"
-            />
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl" />
+              <img
+                src="/assets/profilePic.png"
+                alt="Matheus Souza"
+                className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-border object-cover"
+              />
+            </div>
           </motion.div>
 
+          {/* Name */}
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text"
-            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Matheus Souza de Oliveira
+            Matheus Souza
+            <br />
+            <span className="text-3xl sm:text-4xl md:text-5xl text-muted-foreground">
+              de Oliveira
+            </span>
           </motion.h1>
 
-          <motion.h2
-            className="text-lg sm:text-xl md:text-2xl text-gray-100 mb-6"
-            variants={itemVariants}
+          {/* Title */}
+          <motion.p
+            className="text-xl sm:text-2xl text-muted-foreground mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             Fullstack Developer & Game Developer
-          </motion.h2>
-
-          <motion.p
-            className="text-base sm:text-lg text-body-contrast mb-8 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0"
-            variants={itemVariants}
-          >
-            Desenvolvedor apaixonado por criar experiências digitais incríveis. 
-            Especializado em React, Node.js, Unity e Godot, com foco em Ciência de Dados e IA.
-            Engenheiro da Computação formado na UPE e mestrando em Engenharia da Computação.
           </motion.p>
 
-          <motion.div
-            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
-            variants={itemVariants}
+          {/* Description */}
+          <motion.p
+            className="text-base sm:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-      <Button 
-        className="btn-glass px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-medium text-sm sm:text-base" 
-        onClick={() => {
-          const contactSection = document.querySelector('#contact');
-          contactSection?.scrollIntoView({ behavior: 'smooth' });
-        }}
-        aria-label="Navegar para seção de contato"
-      >
-        <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-        Contato
-      </Button>
+            Criando experiências digitais incríveis com React, Node.js, Unity e Godot.
+            Focado em soluções que combinam funcionalidade e estética.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <Button
+              size="lg"
+              onClick={() => {
+                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              Entre em Contato
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Ver Projetos
+            </Button>
           </motion.div>
 
+          {/* Scroll Indicator */}
           <motion.div
-            className="flex justify-center space-x-6"
-            variants={itemVariants}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <motion.a
-              href="https://github.com/patitow"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar perfil do GitHub"
-              className="glass rounded-full p-3 sm:p-4 glass-hover"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.button
+              onClick={() => {
+                document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              aria-label="Scroll down"
             >
-              <Github className="w-5 h-5 sm:w-6 sm:h-6 text-medium-contrast" />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/patitow/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar perfil do LinkedIn"
-              className="glass rounded-full p-3 sm:p-4 glass-hover"
-              whileHover={{ scale: 1.1, rotate: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-purple" />
-            </motion.a>
-            <motion.a
-              href="https://patitow.itch.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar perfil no itch.io"
-              className="glass rounded-full p-3 sm:p-4 glass-hover"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="text-lg sm:text-xl" role="img" aria-label="Ícone de jogo">🎮</span>
-            </motion.a>
+              <ArrowDown className="w-6 h-6" />
+            </motion.button>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
