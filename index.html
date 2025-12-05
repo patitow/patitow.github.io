@@ -2,8 +2,8 @@
 <html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     
     <!-- SEO Meta Tags -->
@@ -74,9 +74,12 @@
     <link rel="dns-prefetch" href="https://github.com">
     <link rel="dns-prefetch" href="https://www.linkedin.com">
     <link rel="dns-prefetch" href="https://patitow.itch.io">
+    <script type="module" crossorigin src="/assets/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui.js">
+    <link rel="stylesheet" crossorigin href="/assets/index.css">
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="root"></div>
   </body>
 </html>
